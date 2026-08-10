@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>امور کافی نت اطلس | ATLAS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-dark-blue: #0a192f;
+            --secondary-blue: #1e3c72;
+            --light-blue: #2a5298;
+            --accent-blue: #66ccff;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --gradient-primary: linear-gradient(135deg, #0a192f 0%, #1e3c72 50%, #2a5298 100%);
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --hover-bg: rgba(102, 204, 255, 0.15);
+            --text-light: rgba(255, 255, 255, 0.9);
+            --border-light: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            background: var(--gradient-primary);
+            color: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+            direction: rtl;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(102, 204, 255, 0.8);
+        }
+
+        .title {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #66ccff, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            color: var(--text-light);
+        }
+
+        /* Price Container */
+        .price-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        /* Card Styles */
+        .category-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 35px;
+            transition: all 0.4s ease;
+            border: 2px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4), 0 0 40px rgba(102, 204, 255, 0.4);
+            border-color: rgba(102, 204, 255, 0.4);
+        }
+
+        .category-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--accent-blue);
+            border-bottom: 3px solid rgba(102, 204, 255, 0.3);
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Service Item Styles */
+        .service-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-light);
+        }
+
+        .service-item:hover {
+            background: var(--hover-bg);
+            transform: translateX(5px);
+            border-color: rgba(102, 204, 255, 0.4);
+        }
+
+        .service-name {
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-price {
+            color: #66ccff;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* Special Offer Card */
+        .special-offer {
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #66ccff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 4s ease-in-out infinite;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 60px 20px;
+            margin: 60px 0 40px;
+            background: var(--card-bg);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--border-light);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+        }
+
+        .contact-description {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 60px;
+            text-decoration: none;
+            border-radius: 60px;
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            border: 2px solid transparent;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.8);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-icon {
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 15px rgba(102, 204, 255, 0.5); }
+            100% { text-shadow: 0 0 40px rgba(102, 204, 255, 0.8); }
+        }
+
+        @keyframes rainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .price-container {
+                grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            }
+            .title { font-size: 3.5rem; }
+            .logo { font-size: 5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .title { font-size: 2.8rem; }
+            .logo { font-size: 4rem; }
+            .category-title { font-size: 1.8rem; }
+            .service-name { font-size: 1.1rem; }
+            .service-price { font-size: 1.2rem; }
+            .contact-title { font-size: 2.2rem; }
+            .contact-link { 
+                padding: 20px 40px; 
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 40px 15px; }
+            .category-card { padding: 25px 20px; }
+            .category-title { font-size: 1.5rem; }
+            .service-item { padding: 15px; }
+            .contact-description { font-size: 1.1rem; }
+        }
+
+        /* Clear fixes */
+        .clear-fix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Text enhancements */
+        .highlight {
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .important-note {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <h1 class="title">امور کافی نت اطلس</h1>
+            <h2 class="title">ATLAS</h2>
+            <p class="subtitle">خدمات تخصصی آموزشی و دانشجویی با کیفیت بالا</p>
+            <p class="tagline">پشتیبانی 24 ساعته - اطمینان از کیفیت - احترام به حریم خصوصی</p>
+        </div>
+
+        <div class="important-note">
+            <strong>توجه:</strong> تمامی اطلاعات مشتریان کاملاً محرمانه بوده و تحت حفاظت قرار دارد.
+        </div>
+
+        <div class="price-container">
+            <!-- تایپ -->
+            <div class="category-card">
+                <h3 class="category-title"><i class="fas fa-keyboard"></i> تایپ و ورود اطلاعات</h3>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-font"></i> تایپ فارسی</div>
+                    <div class="service-price">از ۳۰,۰۰۰ تومان (هر صفحه)</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-font"></i> تایپ انگلیسی</div>
+                    <div class="service-price">از ۴۰,۰۰۰ تومان (هر صفحه)</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-font"></i> تایپ تخصصی / متن پیچیده</div>
+                    <div class="service-price">از ۵۵,۰۰۰ تومان (هر صفحه)</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-calculator"></i> تایپ همراه با فرمول و جدول</div>
+                    <div class="service-price">از ۷۰,۰۰۰ تومان (هر صفحه)</div>
+                </div>
+            </div>
+
+            <!-- ترجمه -->
+            <div class="category-card">
+                <h3 class="category-title"><i class="fas fa-language"></i> ترجمه</h3>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-exchange-alt"></i> انگلیسی ➜ فارسی</div>
+                    <div class="service-price">از ۲۶۰,۰۰۰ تومان (هر صفحه)</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-exchange-alt"></i> فارسی ➜ انگلیسی</div>
+                    <div class="service-price">از ۴۶۰,۰۰۰ تومان (هر صفحه)</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-exchange-alt"></i> ترجمه تخصصی</div>
+                    <div class="service-price">از ۶۰۰,۰۰۰ تومان (هر صفحه)</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-edit"></i> ترجمه + ویرایش و بازبینی</div>
+                    <div class="service-price">از ۸۰۰,۰۰۰ تومان (هر صفحه)</div>
+                </div>
+            </div>
+
+            <!-- تحقیق و پروژه -->
+            <div class="category-card">
+                <h3 class="category-title"><i class="fas fa-lightbulb"></i> تحقیق و پروژه</h3>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-school"></i> تحقیق دانش‌آموزی</div>
+                    <div class="service-price">از ۲۵۰,۰۰۰ تومان</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-university"></i> تحقیق دانشجویی</div>
+                    <div class="service-price">از ۴۵۰,۰۰۰ تومان</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-project-diagram"></i> پروژه تخصصی</div>
+                    <div class="service-price">از ۸۰۰,۰۰۰ تومان</div>
+                </div>
+            </div>
+
+            <!-- پاورپوینت -->
+            <div class="category-card">
+                <h3 class="category-title"><i class="fas fa-chart-bar"></i> پاورپوینت</h3>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-sliders-h"></i> ساده</div>
+                    <div class="service-price">از ۳۰۰,۰۰۰ تومان</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-crown"></i> حرفه‌ای</div>
+                    <div class="service-price">از ۵۵۰,۰۰۰ تومان</div>
+                </div>
+            </div>
+
+            <!-- خدمات Word و PDF -->
+            <div class="category-card">
+                <h3 class="category-title"><i class="fas fa-file-word"></i> خدمات Word و PDF</h3>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-ruler-combined"></i> صفحه‌آرایی</div>
+                    <div class="service-price">از ۲۰۰,۰۰۰ تومان</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-exchange-alt"></i> تبدیل فایل</div>
+                    <div class="service-price">از ۸۰,۰۰۰ تومان</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-edit"></i> ویرایش و تنظیم تخصصی فایل</div>
+                    <div class="service-price">از ۲۵۰,۰۰۰ تومان</div>
+                </div>
+            </div>
+
+            <!-- خدمات هوشمند آموزشی -->
+            <div class="category-card">
+                <h3 class="category-title"><i class="fas fa-brain"></i> خدمات هوشمند آموزشی</h3>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-book"></i> خلاصه‌سازی مطالب</div>
+                    <div class="service-price">از ۱۸۰,۰۰۰ تومان</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-hands-helping"></i> کمک در انجام تکالیف</div>
+                    <div class="service-price">از ۳۰۰,۰۰۰ تومان</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-lightbulb"></i> تولید محتوا و ایده‌پردازی</div>
+                    <div class="service-price">از ۲۵۰,۰۰۰ تومان</div>
+                </div>
+            </div>
+
+            <!-- طراحی -->
+            <div class="category-card">
+                <h3 class="category-title"><i class="fas fa-paint-brush"></i> طراحی</h3>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-id-card"></i> رزومه</div>
+                    <div class="service-price">از ۳۵۰,۰۰۰ تومان</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-image"></i> پوستر</div>
+                    <div class="service-price">از ۳۰۰,۰۰۰ تومان</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-chart-line"></i> اینفوگرافیک</div>
+                    <div class="service-price">از ۵۰۰,۰۰۰ تومان</div>
+                </div>
+            </div>
+
+            <!-- اطلاعات مهم -->
+            <div class="category-card special-offer">
+                <h3 class="category-title special-offer"><i class="fas fa-star"></i> اطلاعات مهم</h3>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-bolt"></i> تحویل فوری</div>
+                    <div class="service-price"><span class="highlight">+۵۰٪</span> هزینه</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-lock"></i> محرمانگی اطلاعات</div>
+                    <div class="service-price"><span class="highlight">✓</span> تمامی اطلاعات مشتریان محرمانه است</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-name"><i class="fas fa-percentage"></i> قیمت نهایی</div>
+                    <div class="service-price"><span class="highlight">✓</span> بر اساس حجم، زمان، کیفیت و پیچیدگی کار تعیین می‌شود</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2 class="contact-title">ارتباط با ما</h2>
+            <p class="contact-description">
+                برای دریافت اطلاعات بیشتر، مشاوره رایگان و سفارش خدمات<br>
+                با  ما در ارتباط باشید.<br>
+                ما همیشه آماده پاسخگویی و ارائه خدمات با کیفیت به شما هستیم.
+            </p>
+            <a href="https://t.me/ATLAS_SERVICES_ORG" class="contact-link">
+                <i class="fab fa-telegram contact-icon"></i>
+                کانال تلگرام ATLAS
+            </a>
+        </div>
+    </div>
+</body>
+  </html>
